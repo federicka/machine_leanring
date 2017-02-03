@@ -8,4 +8,7 @@ reference: http://www.cs.waikato.ac.nz/~eibe/pubs/nbr.pdf
 #extension 2. multi-classification
 #extension 3. Feature selection to improve NB algorithm One option DT reference: http://alumni.cs.ucr.edu/~ratana/DCAP02.pdf/ maybe RF also can 
 
+Bayesian 
+http://twiecki.github.io/blog/2015/11/10/mcmc-sampling/
+
 
