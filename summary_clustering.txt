@@ -1,0 +1,34 @@
+Machine Learning Clustering:
+
+# ------------- K-means --------------- #
+
+# what is it optimizing and why does it converges?
+/* If the Cost function itself is bounded and (often) local optimum*/
+
+#- Summary of Kmeans ---  Good & Bad
+/* The k-means algorithm has the following
+important properties:
+1. It is efficient in processing large data sets.
+2. It often terminates at a local optimum.
+3. It works only on numeric values.
+4. The clusters have convex shapes [4].
+5. Bad case of K-means: cluster may overlap, some cluster may wider than others*/ 
+6. Another drawback of the distance-based learning is the sparsity --- More Research---
+/*fractional distance based is better than the Eudeliean distance??*/
+#How to choose the clusters number K?
+
+#Do a better initialization?
+/* ----  Kmeans++ Algo ------
+Choose one center uniformly at random from among the data points.
+For each data point x, compute D(x), the distance between x and the nearest center that has already been chosen.
+Choose one new data point at random as a new center, using a weighted probability distribution where a point x is chosen with probability proportional to D(x)2.
+Repeat Steps 2 and 3 until k centers have been chosen.
+Now that the initial centers have been chosen, proceed using standard k-means clustering.*/ 
+
+
+What is the linkage of K-means and Gaussian mixture models.......
+(if each X_j belons to one class C(j), it becomes same as K-means)
+
+
+# ------------ Gaussiam Mixture Model --------------
+#statistical inference the idea from, P(y= i|X_j) 
