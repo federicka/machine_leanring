@@ -1,0 +1,38 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib notebook
+import datetime
+
+path = r"/Users/mengdantian/Desktop/codingtest/peTest/"
+pricedata  = pd.read_csv(path + "testDataPrice.csv")
+earningdata = pd.read_csv(path + "testDataEarnings.csv")
+mapCode = pd.read_csv(path + "testDataMap.csv")
+
+pricedata['Date'] = pd.to_datetime(pricedata['priceDate'])
+pricedata['year'] = pricedata['Date'].dt.year
+pricedata = pd.merge(pricedata, mapCode, on = 'priceCode')
+df = pd.merge(pricedata,earningdata, on = ['year', 'earningsCode', 'currency'])
+print (df.head())
+df.index = df['Date']
+
+df['seg'] = np.where(df['currency'] == 'USD', 'US','Non-US')
+df['seg']
+
+
+lastMon_bycompName = df.groupby(["companyName","seg"]).apply(lambda x: x.resample('M').last())
+lastMon_bycompName["pe"] = lastMon_bycompName["close"] / lastMon_bycompName["value"]
+lastMon_bycompName
+
+data = lastMon_bycompName.unstack(level = 0)['pe'].apply(lambda x: np.mean(x), axis = 1)
+data.unstack(level=0).plot()
+
+stkRet_bycomp = df.groupby(df["companyName"]).apply(lambda x: np.log(x['close']).diff())
+newdf = stkRet_bycomp.unstack(level = 0)
+plottingFrame = newdf.loc[pd.isnull(newdf).any(axis = 1)]
+newdf.loc[newdf.isnull().any(axis = 1)].head()
+
+df.loc[(df['Date'] > '2015-01-01')  & (df['companyName'] == "eurofoods")]
+
+
+
